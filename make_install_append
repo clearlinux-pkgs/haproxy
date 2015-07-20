@@ -1,0 +1,10 @@
+for contrib in halog iprange systemd; do
+  make V=1 %{?_smp_mflags} -C contrib/$contrib SBINDIR=/usr/bin
+done
+
+for contrib in halog iprange; do
+  cp contrib/$contrib/$contrib %{buildroot}/usr/bin
+done
+
+install -d %{buildroot}/usr/lib/systemd/system
+cp contrib/systemd/haproxy.service %{buildroot}/usr/lib/systemd/system
