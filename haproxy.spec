@@ -4,7 +4,7 @@
 #
 Name     : haproxy
 Version  : 1.6.5
-Release  : 9
+Release  : 10
 URL      : http://www.haproxy.org/download/1.6/src/haproxy-1.6.5.tar.gz
 Source0  : http://www.haproxy.org/download/1.6/src/haproxy-1.6.5.tar.gz
 Summary  : HA-Proxy is a TCP/HTTP reverse proxy for high availability environments
