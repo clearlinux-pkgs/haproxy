@@ -4,16 +4,16 @@
 #
 Name     : haproxy
 Version  : 1.8.14
-Release  : 12
+Release  : 13
 URL      : http://www.haproxy.org/download/1.8/src/haproxy-1.8.14.tar.gz
 Source0  : http://www.haproxy.org/download/1.8/src/haproxy-1.8.14.tar.gz
 Summary  : HA-Proxy is a TCP/HTTP reverse proxy for high availability environments
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
-Requires: haproxy-bin
-Requires: haproxy-config
-Requires: haproxy-license
-Requires: haproxy-man
+Requires: haproxy-bin = %{version}-%{release}
+Requires: haproxy-license = %{version}-%{release}
+Requires: haproxy-man = %{version}-%{release}
+Requires: haproxy-services = %{version}-%{release}
 BuildRequires : openssl-dev
 BuildRequires : pcre-dev
 BuildRequires : pkgconfig(zlib)
@@ -38,20 +38,12 @@ risking the system's stability.
 %package bin
 Summary: bin components for the haproxy package.
 Group: Binaries
-Requires: haproxy-config = %{version}-%{release}
 Requires: haproxy-license = %{version}-%{release}
 Requires: haproxy-man = %{version}-%{release}
+Requires: haproxy-services = %{version}-%{release}
 
 %description bin
 bin components for the haproxy package.
-
-
-%package config
-Summary: config components for the haproxy package.
-Group: Default
-
-%description config
-config components for the haproxy package.
 
 
 %package doc
@@ -79,6 +71,14 @@ Group: Default
 man components for the haproxy package.
 
 
+%package services
+Summary: services components for the haproxy package.
+Group: Systemd services
+
+%description services
+services components for the haproxy package.
+
+
 %prep
 %setup -q -n haproxy-1.8.14
 
@@ -87,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537484523
+export SOURCE_DATE_EPOCH=1542398510
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -95,12 +95,12 @@ export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=use
 make  %{?_smp_mflags} TARGET=linux2628 USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1
 
 %install
-export SOURCE_DATE_EPOCH=1537484523
+export SOURCE_DATE_EPOCH=1542398510
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/haproxy
-cp LICENSE %{buildroot}/usr/share/doc/haproxy/LICENSE
-cp doc/gpl.txt %{buildroot}/usr/share/doc/haproxy/doc_gpl.txt
-cp ebtree/LICENSE %{buildroot}/usr/share/doc/haproxy/ebtree_LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/haproxy
+cp LICENSE %{buildroot}/usr/share/package-licenses/haproxy/LICENSE
+cp doc/gpl.txt %{buildroot}/usr/share/package-licenses/haproxy/doc_gpl.txt
+cp ebtree/LICENSE %{buildroot}/usr/share/package-licenses/haproxy/ebtree_LICENSE
 %make_install PREFIX=/usr SBINDIR=/usr/bin DOCDIR=/usr/share/doc/haproxy
 ## install_append content
 for contrib in halog iprange systemd; do
@@ -122,19 +122,20 @@ cp contrib/systemd/haproxy.service %{buildroot}/usr/lib/systemd/system
 /usr/bin/haproxy
 /usr/bin/iprange
 
-%files config
-%defattr(-,root,root,-)
-/usr/lib/systemd/system/haproxy.service
-
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/haproxy/*
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/haproxy/LICENSE
-/usr/share/doc/haproxy/ebtree_LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/haproxy/LICENSE
+/usr/share/package-licenses/haproxy/doc_gpl.txt
+/usr/share/package-licenses/haproxy/ebtree_LICENSE
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/haproxy.1
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/haproxy.service
