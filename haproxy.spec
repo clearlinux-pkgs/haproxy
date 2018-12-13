@@ -4,7 +4,7 @@
 #
 Name     : haproxy
 Version  : 1.8.14
-Release  : 13
+Release  : 14
 URL      : http://www.haproxy.org/download/1.8/src/haproxy-1.8.14.tar.gz
 Source0  : http://www.haproxy.org/download/1.8/src/haproxy-1.8.14.tar.gz
 Summary  : HA-Proxy is a TCP/HTTP reverse proxy for high availability environments
@@ -18,6 +18,8 @@ BuildRequires : openssl-dev
 BuildRequires : pcre-dev
 BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
+Patch1: CVE-2018-20102.patch
+Patch2: CVE-2018-20103.patch
 
 %description
 HA-Proxy is a TCP/HTTP reverse proxy which is particularly suited for high
@@ -81,21 +83,24 @@ services components for the haproxy package.
 
 %prep
 %setup -q -n haproxy-1.8.14
+%patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542398510
+export SOURCE_DATE_EPOCH=1544659222
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 make  %{?_smp_mflags} TARGET=linux2628 USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1
 
+
 %install
-export SOURCE_DATE_EPOCH=1542398510
+export SOURCE_DATE_EPOCH=1544659222
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/haproxy
 cp LICENSE %{buildroot}/usr/share/package-licenses/haproxy/LICENSE
