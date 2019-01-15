@@ -4,7 +4,7 @@
 #
 Name     : haproxy
 Version  : 1.8.17
-Release  : 17
+Release  : 18
 URL      : http://www.haproxy.org/download/1.8/src/haproxy-1.8.17.tar.gz
 Source0  : http://www.haproxy.org/download/1.8/src/haproxy-1.8.17.tar.gz
 Summary  : HA-Proxy is a TCP/HTTP reverse proxy for high availability environments
@@ -18,6 +18,7 @@ BuildRequires : openssl-dev
 BuildRequires : pcre-dev
 BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
+Patch1: CVE-2018-20615.patch
 
 %description
 HA-Proxy is a TCP/HTTP reverse proxy which is particularly suited for high
@@ -81,13 +82,14 @@ services components for the haproxy package.
 
 %prep
 %setup -q -n haproxy-1.8.17
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547577798
+export SOURCE_DATE_EPOCH=1547578249
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -96,7 +98,7 @@ make  %{?_smp_mflags} TARGET=linux2628 USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1
 
 
 %install
-export SOURCE_DATE_EPOCH=1547577798
+export SOURCE_DATE_EPOCH=1547578249
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/haproxy
 cp LICENSE %{buildroot}/usr/share/package-licenses/haproxy/LICENSE
