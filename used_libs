@@ -3,6 +3,7 @@ libcrypt.so.1
 libcrypto.so.1.1
 libpcre.so.1
 libpthread.so.0
+librt.so.1
 libssl.so.1.1
 libsystemd.so.0
 libz.so.1
