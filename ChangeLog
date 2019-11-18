@@ -1,6 +1,89 @@
 ChangeLog :
 ===========
 
+2019/11/15 : 2.0.9
+    - MINOR: config: warn on presence of "\n" in header values/replacements
+    - BUG/MINOR: mux-h2: do not emit logs on backend connections
+    - MINOR: tcp: avoid confusion in time parsing init
+    - BUG/MINOR: cli: don't call the kw->io_release if kw->parse failed
+    - BUG/MINOR: mux-h2: Don't pretend mux buffers aren't full anymore if nothing sent
+    - BUG/MAJOR: stream-int: Don't receive data from mux until SI_ST_EST is reached
+    - BUG/MINOR: spoe: fix off-by-one length in UUID format string
+    - MINOR: mux: Add a new method to get informations about a mux.
+    - BUG/MEDIUM: stream_interface: Only use SI_ST_RDY when the mux is ready.
+    - BUG/MEDIUM: servers: Only set SF_SRV_REUSED if the connection if fully ready.
+    - BUG/MINOR: config: Update cookie domain warn to RFC6265
+    - BUG/MEDIUM: mux-h2: report no available stream on a connection having errors
+    - BUG/MEDIUM: mux-h2: immediately remove a failed connection from the idle list
+    - BUG/MEDIUM: mux-h2: immediately report connection errors on streams
+    - BUG/MEDIUM: mux-h1: Disable splicing for chunked messages
+    - BUG/MEDIUM: stream: Be sure to support splicing at the mux level to enable it
+    - MINOR: doc: http-reuse connection pool fix
+    - BUG/MEDIUM: stream: Be sure to release allocated captures for TCP streams
+    - BUG/MINOR: action: do-resolve now use cached response
+    - BUG: dns: timeout resolve not applied for valid resolutions
+    - DOC: management: document reuse and connect counters in the CSV format
+    - DOC: management: document cache_hits and cache_lookups in the CSV format
+    - DOC: management: fix typo on "cache_lookups" stats output
+    - BUG/MINOR: queue/threads: make the queue unlinking atomic
+    - BUG/MEDIUM: listeners: always pause a listener on out-of-resource condition
+    - BUG/MEDIUM: Make sure we leave the session list in session_free().
+    - CLEANUP: session: slightly simplify idle connection cleanup logic
+    - MINOR: memory: also poison the area on freeing
+    - BUILD: contrib/da: remove an "unused" warning
+    - BUG/MINOR: log: limit the size of the startup-logs
+    - BUG/MEDIUM: filters: Don't call TCP callbacks for HTX streams
+    - BUG/MINOR: mux-h1: Don't set CS_FL_EOS on a read0 when receiving data to pipe
+
+2019/10/23 : 2.0.8
+    - BUG/MINOR: stats: Add a missing break in a switch statement
+    - BUG/MINOR: lua: Properly initialize the buffer's fields for string samples in hlua_lua2(smp|arg)
+    - BUG/MEDIUM: lua: Store stick tables into the sample's `t` field
+    - BUG/MINOR: action: do-resolve does not yield on requests with body
+    - MINOR: mux-h2: add a per-connection list of blocked streams
+    - BUILD: ebtree: make eb_is_empty() and eb_is_dup() take a const
+    - BUG/MEDIUM: mux-h2: do not enforce timeout on long connections
+    - BUG/MINOR: peers: crash on reload without local peer.
+    - BUG/MEDIUM: cache: make sure not to cache requests with absolute-uri
+    - DOC: clarify some points around http-send-name-header's behavior
+    - DOC: fix typo in Prometheus exporter doc
+    - MINOR: stats: mention in the help message support for "json" and "typed"
+    - BUG/MEDIUM: applet: always check a fast running applet's activity before killing
+    - BUG/MINOR: ssl: abort on sni allocation failure
+    - BUG/MINOR: ssl: free the sni_keytype nodes
+    - BUG/MINOR: ssl: abort on sni_keytypes allocation failure
+    - BUILD: ssl: wrong #ifdef for SSL engines code
+    - BUG/MEDIUM: htx: Catch chunk_memcat() failures when HTX data are formatted to h1
+    - BUG/MINOR: chunk: Fix tests on the chunk size in functions copying data
+    - BUG/MINOR: mux-h1: Mark the output buffer as full when the xfer is interrupted
+    - BUG/MINOR: mux-h1: Capture ignored parsing errors
+    - BUG/MINOR: WURFL: fix send_log() function arguments
+    - MINOR: version: make the version strings variables, not constants
+    - BUG/MINOR: http-htx: Properly set htx flags on error files to support keep-alive
+    - BUG/MINOR: mworker/ssl: close openssl FDs unconditionally
+    - BUG/MINOR: tcp: Don't alter counters returned by tcp info fetchers
+    - BUG/MEDIUM: mux_pt: Make sure we don't have a conn_stream before freeing.
+    - BUG/MAJOR: idle conns: schedule the cleanup task on the correct threads
+    - Revert e8826ded5fea3593d89da2be5c2d81c522070995.
+    - BUG/MEDIUM: mux_pt: Don't destroy the connection if we have a stream attached.
+    - BUG/MEDIUM: mux_pt: Only call the wake emthod if nobody subscribed to receive.
+    - REGTEST: mcli/mcli_show_info: launch a 'show info' on the master CLI
+    - CLEANUP: ssl: make ssl_sock_load_cert*() return real error codes
+    - CLEANUP: ssl: make ssl_sock_put_ckch_into_ctx handle errcode/warn
+    - CLEANUP: ssl: make ssl_sock_load_dh_params handle errcode/warn
+    - CLEANUP: bind: handle warning label on bind keywords parsing.
+    - BUG/MEDIUM: ssl: 'tune.ssl.default-dh-param' value ignored with openssl > 1.1.1
+    - BUG/MINOR: mworker/cli: reload fail with inherited FD
+    - BUG/MINOR: ssl: Fix fd leak on error path when a TLS ticket keys file is parsed
+    - BUG/MINOR: stick-table: Never exceed (MAX_SESS_STKCTR-1) when fetching a stkctr
+    - BUG/MINOR: cache: alloc shctx after check config
+    - BUG/MINOR: sample: Make the `field` converter compatible with `-m found`
+    - BUG/MINOR: mux-h2: also make sure blocked legacy connections may expire
+    - BUG/MEDIUM: http: unbreak redirects in legacy mode
+    - BUG/MINOR: ssl: fix memcpy overlap without consequences.
+    - BUG/MINOR: stick-table: fix an incorrect 32 to 64 bit key conversion
+    - BUG/MEDIUM: pattern: make the pattern LRU cache thread-local and lockless
+
 2019/09/27 : 2.0.7
     - BUG/MEDIUM: stick-table: Properly handle "show table" with a data type argument
     - BUG/MINOR: mux-h2: Be sure to have a connection to unsubcribe
