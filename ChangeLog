@@ -1,6 +1,299 @@
 ChangeLog :
 ===========
 
+2021/01/08 : 2.0.20
+    - BUG/MINOR: pattern: a sample marked as const could be written
+    - BUG/MINOR: lua: set buffer size during map lookups
+    - BUG/MINOR: peers: Do not ignore a protocol error for dictionary entries.
+    - BUG/MINOR: peers: Missing TX cache entries reset.
+    - BUG/MEDIUM: peers: fix decoding of multi-byte length in stick-table messages
+    - BUG/MINOR: http-fetch: Extract cookie value even when no cookie name
+    - BUG/MINOR: http-fetch: Fix calls w/o parentheses of the cookie sample fetches
+    - BUG/MAJOR: spoe: Be sure to remove all references on a released spoe applet
+    - MINOR: spoe: Don't close connection in sync mode on processing timeout
+    - MINOR: cfgparse: tighten the scope of newnameserver variable, free it on error.
+    - BUILD: http-htx: fix build warning regarding long type in printf
+    - BUG/MEDIUM: filters: Forward all filtered data at the end of http filtering
+    - BUG/MINOR: http-ana: Don't wait for the body of CONNECT requests
+    - BUG/MAJOR: filters: Always keep all offsets up to date during data filtering
+    - BUG/MAJOR: peers: fix partial message decoding
+    - DOC: config: Move req.hdrs and req.hdrs_bin in L7 samples fetches section
+    - MINOR: plock: use an ARMv8 instruction barrier for the pause instruction
+    - BUG/MINOR: lua: lua-load doesn't check its parameters
+    - BUG/MINOR: lua: Post init register function are not executed beyond the first one
+    - BUG/MINOR: lua: Some lua init operation are processed unsafe
+    - MINOR: actions: Export actions lookup functions
+    - MINOR: actions: add a function returning a service pointer from its name
+    - MINOR: cli: add a function to look up a CLI service description
+    - BUG/MINOR: lua: warn when registering action, conv, sf, cli or applet multiple times
+    - DOC/MINOR: Fix formatting in Management Guide
+    - BUG/MAJOR: spoa/python: Fixing return None
+    - DOC: spoa/python: Fixing typo in IP related error messages
+    - DOC: spoa/python: Rephrasing memory related error messages
+    - DOC: spoa/python: Fixing typos in comments
+    - BUG/MINOR: spoa/python: Cleanup references for failed Module Addobject operations
+    - BUG/MINOR: spoa/python: Cleanup ipaddress objects if initialization fails
+    - BUG/MEDIUM: spoa/python: Fixing PyObject_Call positional arguments
+    - BUG/MEDIUM: spoa/python: Fixing references to None
+    - DOC: email change of the DeviceAtlas maintainer
+    - BUG/MINOR: tools: make parse_time_err() more strict on the timer validity
+    - BUG/MINOR: tools: Reject size format not starting by a digit
+    - BUG/MEDIUM: lb-leastconn: Reposition a server using the right eweight
+    - CLEANUP: lua: Remove declaration of an inexistant function
+    - CLEANUP: contrib/prometheus-exporter: typo fixes for ssl reuse metric
+    - REGTESTS: make use of HAPROXY_ARGS and pass -dM by default
+    - BUILD: Makefile: have "make clean" destroy .o/.a/.s in contrib subdirs as well
+    - BUG/MINOR: mux-h1: Don't set CS_FL_EOI too early for protocol upgrade requests
+    - BUG/MEDIUM: http-ana: Never for sending data in TUNNEL mode
+    - CONTRIB: halog: fix build issue caused by %L printf format
+    - CONTRIB: halog: mark the has_zero* functions unused
+    - CONTRIB: halog: fix signed/unsigned build warnings on counts and timestamps
+    - BUILD: plock: remove dead code that causes a warning in gcc 11
+    - BUILD: hpack: hpack-tbl-t.h uses VAR_ARRAY but does not include compiler.h
+    - MINOR: atomic: don't use ; to separate instruction on aarch64.
+    - BUG/MINOR: cfgparse: Fail if the strdup() for `rule->be.name` for `use_backend` fails
+    - SCRIPTS: improve announce-release to support different tag and versions
+    - SCRIPTS: make announce release support preparing announces before tag exists
+    - BUG/MINOR: srv: do not init address if backend is disabled
+    - BUILD: Makefile: exclude broken tests by default
+    - MINOR: contrib/prometheus-exporter: export build_info
+    - DOC: fix some spelling issues over multiple files
+    - SCRIPTS: announce-release: fix typo in help message
+    - DOC: Add maintainers for the Prometheus exporter
+    - BUG/MINOR: sample: fix concat() converter's corruption with non-string variables
+
+2020/11/06 : 2.0.19
+    - DOC: ssl: crt-list negative filters are only a hint
+    - BUILD: makefile: Fix building with closefrom() support enabled
+    - BUG/MINOR: Fix several leaks of 'log_tag' in init().
+    - BUG/MEDIUM: queue: make pendconn_cond_unlink() really thread-safe
+    - MINOR: counters: fix a typo in comment
+    - BUG/MINOR: stats: fix validity of the json schema
+    - MINOR: hlua: Display debug messages on stderr only in debug mode
+    - BUG/MINOR: peers: Inconsistency when dumping peer status codes.
+    - BUG/MINOR: mux-h1: Always set the session on frontend h1 stream
+    - BUG/MEDIUM: mux-h2: Don't handle pending read0 too early on streams
+    - BUG/MINOR: http-htx: Expect no body for 204/304 internal HTTP responses
+    - BUG/MEDIUM: h1: Always try to receive more in h1_rcv_buf().
+    - BUG/MINOR: init: only keep rlim_fd_cur if max is unlimited
+    - BUG/MINOR: mux-h2: do not stop outgoing connections on stopping
+    - MINOR: fd: report an error message when failing initial allocations
+    - BUG/MEDIUM: task: bound the number of tasks picked from the wait queue at once
+    - BUG/MEDIUM: spoe: Unset variable instead of set it if no data provided
+    - BUG/MEDIUM: mux-h1: Get the session from the H1S when capturing bad messages
+    - BUG/MEDIUM: lb: Always lock the server when calling server_{take,drop}_conn
+    - BUG/MINOR: peers: Possible unexpected peer seesion reset after collisions.
+    - BUG/MINOR: queue: properly report redistributed connections
+    - BUG/MEDIUM: server: support changing the slowstart value from state-file
+    - BUG/MINOR: http-ana: Don't send payload for internal responses to HEAD requests
+    - BUG/MAJOR: mux-h2: Don't try to send data if we know it is no longer possible
+    - BUG/MINOR: extcheck: add missing checks on extchk_setenv()
+    - BUG/MINOR: log: fix memory leak on logsrv parse error
+    - BUG/MINOR: server: fix srv downtime calcul on starting
+    - BUG/MINOR: server: fix down_time report for stats
+    - BUG/MINOR: lua: initialize sample before using it
+    - BUG/MINOR: cache: Inverted variables in http_calc_maxage function
+    - BUG/MEDIUM: filters: Don't try to init filters for disabled proxies
+    - BUG/MINOR: server: Set server without addr but with dns in RMAINT on startup
+    - MINOR: server: Copy configuration file and line for server templates
+    - BUG/MEDIUM: mux-pt: Release the tasklet during an HTTP upgrade
+    - BUG/MINOR: filters: Skip disabled proxies during startup only
+    - BUG/MEDIUM: stick-table: limit the time spent purging old entries
+    - MINOR: http-htx: Add understandable errors for the errorfiles parsing
+    - BUG/MINOR: http-htx: Just warn if payload of an errorfile doesn't match the C-L
+
+2020/09/30 : 2.0.18
+    - SCRIPTS: git-show-backports: make -m most only show the left branch
+    - SCRIPTS: git-show-backports: emit the shell command to backport a commit
+    - BUG/MEDIUM: mux-h2: Don't fail if nothing is parsed for a legacy chunk response
+    - BUG/MEDIUM: mux-h1: Refresh H1 connection timeout after a synchronous send
+    - BUG/MEDIUM: map/lua: Return an error if a map is loaded during runtime
+    - BUG/MINOR: lua: Check argument type to convert it to IPv4/IPv6 arg validation
+    - BUG/MINOR: lua: Check argument type to convert it to IP mask in arg validation
+    - BUG/MINOR: snapshots: leak of snapshots on deinit()
+    - BUG/MINOR: stats: use strncmp() instead of memcmp() on health states
+    - BUG/MEDIUM: htx: smp_prefetch_htx() must always validate the direction
+    - BUG/MINOR: reload: do not fail when no socket is sent
+    - DOC: cache: Use '<name>' instead of '<id>' in error message
+    - BUG/MAJOR: contrib/spoa-server: Fix unhandled python call leading to memory leak
+    - BUG/MINOR: contrib/spoa-server: Ensure ip address references are freed
+    - BUG/MINOR: contrib/spoa-server: Do not free reference to NULL
+    - BUG/MINOR: contrib/spoa-server: Updating references to free in case of failure
+    - BUG/MEDIUM: contrib/spoa-server: Fix ipv4_address used instead of ipv6_address
+    - BUG/MINOR: startup: haproxy -s cause 100% cpu
+    - BUG/MEDIUM: doc: Fix replace-path action description
+    - BUG/MEDIUM: ssl: check OCSP calloc in ssl_sock_load_ocsp()
+    - BUG/MINOR: threads: work around a libgcc_s issue with chrooting
+    - BUILD: thread: limit the libgcc_s workaround to glibc only
+    - MINOR: Commit .gitattributes
+    - CLEANUP: Update .gitignore
+    - BUG/MINOR: auth: report valid crypto(3) support depending on build options
+    - BUG/MEDIUM: mux-h1: always apply the timeout on half-closed connections
+    - BUILD: threads: better workaround for late loading of libgcc_s
+    - BUG/MEDIUM: pattern: Renew the pattern expression revision when it is pruned
+    - BUG/MEDIUM: http-ana: Don't wait to send 1xx responses received from servers
+    - BUG/MEDIUM: ssl: does not look for all SNIs before chosing a certificate
+    - BUG/MINOR: ssl: verifyhost is case sensitive
+    - BUG/MINOR: server: report correct error message for invalid port on "socks4"
+    - BUG/MINOR: http-fetch: Don't set the sample type during the htx prefetch
+    - BUG/MEDIUM: h2: report frame bits only for handled types
+    - BUG/MINOR: Fix memory leaks cfg_parse_peers
+    - BUG/MINOR: config: Fix memory leak on config parse listen
+    - BUG/MEDIUM: listeners: do not pause foreign listeners
+    - DOC: spoa-server: fix false friends `actually`
+    - DOC: agent-check: fix typo in "fail" word expected reply
+    - REGTESTS: add a few load balancing tests
+    - REGTEST: fix host part in balance-uri-path-only.vtc
+    - REGTEST: make abns_socket.vtc require 1.8
+    - REGTEST: make map_regm_with_backref require 1.7
+
+2020/07/31 : 2.0.17
+    - BUILD: ebtree: fix build on libmusl after recent introduction of eb_memcmp()
+    - REGEST: Add reg tests about error files
+    - BUG/MINOR: threads: Don't forget to init each thread toremove_lock.
+    - MINOR: pools: increase MAX_BASE_POOLS to 64
+    - BUILD: thread: add parenthesis around values of locking macros
+    - BUG/MINOR: cfgparse: don't increment linenum on incomplete lines
+    - BUG/MEDIUM: resolve: fix init resolving for ring and peers section.
+    - BUG/MEDIUM: mux-h2: Emit an error if the response chunk formatting is incomplete
+    - BUG/MAJOR: dns: Make the do-resolve action thread-safe
+    - BUG/MEDIUM: dns: Release answer items when a DNS resolution is freed
+    - BUG/MEDIUM: mux-h1: Wakeup the H1C in h1_rcv_buf() if more data are expected
+    - BUG/MEDIUM: mux-h1: Disable the splicing when nothing is received
+    - BUG/MINOR: debug: Don't dump the lua stack if it is not initialized
+    - MEDIUM: lua: Add support for the Lua 5.4
+    - BUG/MEDIUM: dns: Don't yield in do-resolve action on a final evaluation
+    - BUG/MINOR: tcp-rules: Set the inspect-delay when a tcp-response action yields
+    - MINOR: connection: Preinstall the mux for non-ssl connect
+    - MINOR: stream-int: Be sure to have a mux to do sends and receives
+    - SCRIPTS: announce-release: add the link to the wiki in the announce messages
+
+2020/07/17 : 2.0.16
+    - MINOR: http: Add 410 to http-request deny
+    - MINOR: http: Add 404 to http-request deny
+    - BUG/MINOR: tcp-rules: tcp-response must check the buffer's fullness
+    - BUG/MEDIUM: ebtree: use a byte-per-byte memcmp() to compare memory blocks
+    - BUG/MINOR: spoe: add missing key length check before checking key names
+    - BUG/MINOR: cli: allow space escaping on the CLI
+    - BUG/MINOR: mworker/cli: fix the escaping in the master CLI
+    - BUG/MINOR: mworker/cli: fix semicolon escaping in master CLI
+    - REGTEST: http-rules: test spaces in ACLs
+    - REGTEST: http-rules: test spaces in ACLs with master CLI
+    - MEDIUM: map: make the "clear map" operation yield
+    - BUG/MINOR: systemd: Wait for network to be online
+    - REGTEST: Add a simple script to tests errorfile directives in proxy sections
+    - BUG/MINOR: spoe: correction of setting bits for analyzer
+    - BUG/MINOR: http_ana: clarify connection pointer check on L7 retry
+    - MINOR: spoe: Don't systematically create new applets if processing rate is low
+    - REGTEST: ssl: tests the ssl_f_* sample fetches
+    - REGTEST: ssl: add some ssl_c_* sample fetches test
+    - BUG/MEDIUM: fetch: Fix hdr_ip misparsing IPv4 addresses due to missing NUL
+    - MINOR: cli: make "show sess" stop at the last known session
+    - DOC: ssl: add "allow-0rtt" and "ciphersuites" in crt-list
+    - BUG/MEDIUM: pattern: Add a trailing \0 to match strings only if possible
+    - BUG/MINOR: proxy: fix dump_server_state()'s misuse of the trash
+    - BUG/MINOR: proxy: always initialize the trash in show servers state
+    - DOC: configuration: add missing index entries for tune.pool-{low,high}-fd-ratio
+    - DOC: configuration: fix alphabetical ordering for tune.pool-{high,low}-fd-ratio
+    - BUG/MINOR: http_act: don't check capture id in backend (2)
+    - BUG/MINOR: mux-h1: Fix the splicing in TUNNEL mode
+    - BUG/MINOR: mux-h1: Don't read data from a pipe if the mux is unable to receive
+    - BUG/MINOR: mux-h1: Disable splicing only if input data was processed
+    - BUG/MEDIUM: mux-h1: Disable splicing for the conn-stream if read0 is received
+    - BUG/MEDIUM: mux-h1: Subscribe rather than waking up in h1_rcv_buf()
+    - MINOR: connection: move the CO_FL_WAIT_ROOM cleanup to the reader only
+    - BUG/MEDIUM: connection: Continue to recv data to a pipe when the FD is not ready
+    - BUG/MINOR: backend: Remove CO_FL_SESS_IDLE if a client remains on the last server
+    - MINOR: http: Add support for http 413 status
+    - BUG/MAJOR: stream: Mark the server address as unset on new outgoing connection
+    - BUG/MEDIUM: stream-int: Disable connection retries on plain HTTP proxy mode
+    - DOC: configuration: remove obsolete mentions of H2 being converted to HTTP/1.x
+    - BUG/MINOR: sample: Free str.area in smp_check_const_bool
+    - BUG/MINOR: sample: Free str.area in smp_check_const_meth
+    - CONTRIB: da: fix memory leak in dummy function da_atlas_open()
+    - BUG/MEDIUM: mux-h1: Continue to process request when switching in tunnel mode
+    - BUG/MEDIUM: log: issue mixing sampled to not sampled log servers.
+    - BUG/MEDIUM: channel: Be aware of SHUTW_NOW flag when output data are peeked
+
+2020/06/12 : 2.0.15
+    - BUG/MINOR: protocol_buffer: Wrong maximum shifting.
+    - BUG/MINOR: peers: Incomplete peers sections should be validated.
+    - DOC: hashing: update link to hashing functions
+    - DOC: Improve documentation on http-request set-src
+    - BUG/MINOR: ssl: default settings for ssl server options are not used
+    - BUG/MEDIUM: http-ana: Handle NTLM messages correctly.
+    - BUG/MINOR: tools: fix the i386 version of the div64_32 function
+    - BUG/MINOR: http: make url_decode() optionally convert '+' to SP
+    - DOC: option logasap does not depend on mode
+    - BUG/MINOR: check: Update server address and port to execute an external check
+    - MINOR: checks: Add a way to send custom headers and payload during http chekcs
+    - BUG/MINOR: checks: Respect the no-check-ssl option
+    - BUG/MINOR: checks: chained expect will not properly wait for enough data
+    - BUG/MINOR: obj_type: Handle stream object in obj_base_ptr() function
+    - BUG/MEDIUM: capture: capture-req/capture-res converters crash without a stream
+    - BUG/MEDIUM: capture: capture.{req,res}.* crash without a stream
+    - BUG/MEDIUM: http: the "http_first_req" sample fetch could crash without a steeam
+    - BUG/MEDIUM: http: the "unique-id" sample fetch could crash without a steeam
+    - BUG/MEDIUM: sample: make the CPU and latency sample fetches check for a stream
+    - BUG/MEDIUM: listener: mark the thread as not stuck inside the loop
+    - MINOR: threads: export the POSIX thread ID in panic dumps
+    - BUG/MINOR: debug: properly use long long instead of long for the thread ID
+    - BUG/MEDIUM: shctx: really check the lock's value while waiting
+    - BUG/MEDIUM: shctx: bound the number of loops that can happen around the lock
+    - MINOR: stream: report the list of active filters on stream crashes
+    - REGTEST: ssl: test the client certificate authentication
+    - BUG/MEDIUM: backend: don't access a non-existing mux from a previous connection
+    - Revert "BUG/MINOR: connection: make sure to correctly tag local PROXY connections"
+    - BUG/MEDIUM: server/checks: Init server check during config validity check
+    - BUG/MINOR: checks/server: use_ssl member must be signed
+    - BUG/MEDIUM: checks: Always initialize checks before starting them
+    - BUG/MINOR: checks: Compute the right HTTP request length for HTTP health checks
+    - BUG/MINOR: checks: Remove a warning about http health checks
+    - BUG/MEDIUM: streams: Remove SF_ADDR_SET if we're retrying due to L7 retry.
+    - BUG/MEDIUM: stream: Only allow L7 retries when using HTTP.
+    - BUG/MAJOR: stream-int: always detach a faulty endpoint on connect failure
+    - BUG/MEDIUM: connections: force connections cleanup on server changes
+    - BUG/MEDIUM: ssl: fix the id length check within smp_fetch_ssl_fc_session_id()
+    - CLEANUP: connections: align function declaration
+    - BUG/MINOR: sample: Set the correct type when a binary is converted to a string
+    - BUG/MINOR: threads: fix multiple use of argument inside HA_ATOMIC_CAS()
+    - BUG/MINOR: threads: fix multiple use of argument inside HA_ATOMIC_UPDATE_{MIN,MAX}()
+    - BUG/MEDIUM: lua: Fix dumping of stick table entries for STD_T_DICT
+    - BUG/MINOR: config: Make use_backend and use-server post-parsing less obscur
+    - BUG/MINOR: http-ana: fix NTLM response parsing again
+    - BUG/MEDIUM: http_ana: make the detection of NTLM variants safer
+    - BUG/MINOR: cfgparse: Abort parsing the current line if an invalid \x sequence is encountered
+    - BUG/MINOR: pools: use %u not %d to report pool stats in "show pools"
+    - BUG/MINOR: pollers: remove uneeded free in global init
+    - BUG/MINOR: soft-stop: always wake up waiting threads on stopping
+    - BUILD: select: only declare existing local labels to appease clang
+    - BUG/MINOR: cache: Don't needlessly test "cache" keyword in parse_cache_flt()
+    - BUG/MINOR: checks: Respect check-ssl param when a port or an addr is specified
+    - BUG/MINOR: server: Fix server_finalize_init() to avoid unused variable
+    - BUG/MINOR: lua: Add missing string length for lua sticktable lookup
+    - BUG/MINOR: nameservers: fix error handling in parsing of resolv.conf
+    - Revert "BUG/MEDIUM: connections: force connections cleanup on server changes"
+    - SCRIPTS: publish-release: pass -n to gzip to remove timestamp
+    - BUG/MINOR: peers: fix internal/network key type mapping.
+    - BUG/MEDIUM: lua: Reset analyse expiration timeout before executing a lua action
+    - BUG/MEDIUM: hlua: Lock pattern references to perform set/add/del operations
+    - BUG/MEDIUM: contrib/prometheus-exporter: Properly set flags to dump metrics
+    - BUG/MINOR: logs: prevent double line returns in some events.
+    - BUG/MEDIUM: logs: fix trailing zeros on log message.
+    - BUG/MINOR: proto-http: Fix detection of NTLM for the legacy HTTP version
+    - BUILD: makefile: adjust the sed expression of "make help" for solaris
+    - BUG/MEDIUM: mworker: fix the copy of options in copy_argv()
+    - BUG/MINOR: init: -x can have a parameter starting with a dash
+    - BUG/MINOR: init: -S can have a parameter starting with a dash
+    - BUG/MEDIUM: mworker: fix the reload with an -- option
+    - BUG/MINOR: mworker: fix a memleak when execvp() failed
+    - BUG/MEDIUM: log: don't hold the log lock during writev() on a file descriptor
+    - BUG/MEDIUM: pattern: fix thread safety of pattern matching
+    - REGTESTS: Add missing OPENSSL to REQUIRE_OPTIONS for lua/txn_get_priv
+    - REGTESTS: Add missing OPENSSL to REQUIRE_OPTIONS for compression/lua_validation
+    - BUG/MINOR: ssl: fix ssl-{min,max}-ver with openssl < 1.1.0
+    - REGTESTS: checks: Fix tls_health_checks when IPv6 addresses are used
+
 2020/04/02 : 2.0.14
     - BUG/MINOR: namespace: avoid closing fd when socket failed in my_socketat
     - BUG/MEDIUM: muxes: Use the right argument when calling the destroy method.
