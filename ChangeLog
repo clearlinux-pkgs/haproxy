@@ -1,6 +1,26 @@
 ChangeLog :
 ===========
 
+2021/08/17 : 2.0.24
+    - BUG/MEDIUM: tcp-check: Do not dereference inexisting connection
+    - BUILD: add detection of missing important CFLAGS
+    - BUG/MEDIUM: mworker: do not register an exit handler if exit is expected
+    - BUG/MINOR: mworker: do not export HAPROXY_MWORKER_REEXEC across programs
+    - BUG/MINOR: systemd: must check the configuration using -Ws
+    - BUG/MINOR: mux-h2: Obey dontlognull option during the preface
+    - BUG/MEDIUM: mux-h2: Handle remaining read0 cases on partial frames
+    - BUG/MINOR: connection: Add missing error labels to conn_err_code_str
+    - BUG/MINOR: server: update last_change on maint->ready transitions too
+    - MINOR: spoe: Add a pointer on the filter config in the spoe_agent structure
+    - BUG/MEDIUM: spoe: Create a SPOE applet if necessary when the last one is released
+    - BUG/MEDIUM: spoe: Fix policy to close applets when SPOE connections are queued
+    - DOC: Improve the lua documentation
+    - DOC: config: Fix 'http-response send-spoe-group' documentation
+    - MINOR: mux-h1/proxy: Add a proxy option to disable clear h2 upgrade
+    - DOC/MINOR: fix typo in management document
+    - BUG/MAJOR: h2: enforce stricter syntax checks on the :method pseudo-header
+    - REGTESTS: add a test to prevent h2 desync attacks
+
 2021/07/16 : 2.0.23
     - DOC: Explicitly state only IPv4 are supported by forwardfor/originalto options
     - BUG/MINOR: tools: fix parsing "us" unit for timers
