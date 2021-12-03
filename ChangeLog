@@ -1,6 +1,76 @@
 ChangeLog :
 ===========
 
+2021/12/03 : 2.0.26
+    - BUG/MINOR: systemd: ExecStartPre must use -Ws
+    - BUG/MINOR: compat: make sure __WORDSIZE is always defined
+    - BUG/MINOR: cli/payload: do not search for args inside payload
+    - BUG/MEDIUM: http: check for a channel pending data before waiting
+    - BUG/MINOR: stats: fix the POST requests processing in legacy mode
+    - MEDIUM: actions: Fix block ACL.
+    - BUG/MEDIUM: stream-int: Don't block SI on a channel policy if EOI is reached
+    - Revert "REGTESTS: mark http_abortonclose as broken"
+    - BUG/MINOR: server: allow 'enable health' only if check configured
+    - BUG/MEDIUM: mux-h1: Adjust conditions to ask more space in the channel buffer
+    - BUG/MEDIUM: stream-int: Notify stream that the mux wants more room to xfer data
+    - BUG/MEDIUM: stream: Stop waiting for more data if SI is blocked on RXBLK_ROOM
+    - BUG/MINOR: mux-h1/mux-fcgi: Sanitize TE header to only send "trailers"
+    - DOC: peers: fix doc "enable" statement on "peers" sections
+    - BUG/MEDIUM: lua: fix wakeup condition from sleep()
+    - BUG/MAJOR: lua: use task_wakeup() to properly run a task once
+    - BUG/MINOR: tcp-rules: Stop content rules eval on read error and end-of-input
+    - BUG/MINOR: stream: Don't release a stream if FLT_END is still registered
+    - BUG/MEDIUM: http-ana: Reset channels analysers when returning an error
+    - BUG/MINOR: filters: Always set FLT_END analyser when CF_FLT_ANALYZE flag is set
+    - BUG/MINOR: filters: Set right FLT_END analyser depending on channel
+    - BUG/MEDIUM: filters: Fix a typo when a filter is attached blocking the release
+    - BUG/MEDIUM: http-ana: Clear request analyzers when applying redirect rule
+    - BUG/MEDIUM: mux_h2: Handle others remaining read0 cases on partial frames
+    - BUG/MEDIUM: stream: Keep FLT_END analyzers if a stream detects a channel error
+    - CLEANUP: sample: rename sample_conv_var2smp() to *_sint
+    - CLEANUP: sample: uninline sample_conv_var2smp_str()
+    - MINOR: sample: provide a generic var-to-sample conversion function
+    - BUG/MEDIUM: sample: properly verify that variables cast to sample
+    - MINOR: resolvers: fix the resolv_str_to_dn_label() API about trailing zero
+    - BUG/MEDIUM: resolver: make sure to always use the correct hostname length
+    - BUG/MINOR: resolvers: do not reject host names of length 255 in SRV records
+    - MINOR: resolvers: fix the resolv_dn_label_to_str() API about trailing zero
+    - BUG/MEDIUM: resolvers: fix truncated TLD consecutive to the API fix
+    - BUG/MEDIUM: resolvers: use correct storage for the target address
+    - MINOR: resolvers: merge address and target into a union "data"
+    - BUILD: resolvers: avoid a possible warning on null-deref
+    - BUG/MEDIUM: resolvers: always check a valid item in query_list
+    - BUG/MINOR: mux-h2: do not prevent from sending a final GOAWAY frame
+    - BUG/MINOR: mux-h1: Save shutdown mode if the shutdown is delayed
+    - BUG/MEDIUM: mux-h1: Perform a connection shutdown when the h1c is released
+    - CLEANUP: resolvers: do not export resolv_purge_resolution_answer_records()
+    - CLEANUP: always initialize the answer_list
+    - CLEANUP: resolvers: replace all LIST_DELETE with LIST_DEL_INIT
+    - BUG/MEDIUM: http-ana: Drain request data waiting the tarpit timeout expiration
+    - BUG/MINOR: http: Authorization value can have multiple spaces after the scheme
+    - DOC: config: Fix alphabetical order of fc_* samples
+    - MINOR: stream: Improve dump of bogus streams
+    - BUG/MINOR: tcpcheck: Improve LDAP response parsing to fix LDAP check
+    - MINOR: htx: Add an HTX flag to know when a message is fragmented
+    - MINOR: htx: Add a function to know if the free space wraps
+    - BUG/MEDIUM: stream-int: Defrag HTX message in si_cs_recv() if necessary
+    - BUG/MEDIUM: mux-h1: Fix H1C_F_ST_SILENT_SHUT value
+    - DOC: config: Fix typo in ssl_fc_unique_id description
+    - BUG/MINOR: http-ana: Apply stop to the current section for http-response rules
+    - BUG/MEDIUM: conn-stream: Don't reset CS flags on close
+    - BUG/MINOR: mworker: doesn't launch the program postparser
+    - BUG/MINOR: mux-h2: Fix H2_CF_DEM_SHORT_READ value
+    - BUG/MEDIUM: connection: make cs_shutr/cs_shutw//cs_close() idempotent
+    - BUG/MINOR: stick-table/cli: Check for invalid ipv6 key
+    - MINOR: connection: add a new CO_FL_WANT_DRAIN flag to force drain on close
+    - MINOR: mux-h2: perform a full cycle shutdown+drain on close
+    - CLEANUP: ssl: Release cached SSL sessions on deinit
+    - BUG/MEDIUM: ssl: backend TLS resumption with sni and TLSv1.3
+    - BUG/MEDIUM: mux-h2: always process a pending shut read
+    - BUG/MEDIUM: shctx: leave the block allocator when enough blocks are found
+    - BUG/MINOR: shctx: do not look for available blocks when the first one is enough
+    - BUG/MEDIUM: ssl: abort with the correct SSL error when SNI not found
+
 2021/09/07 : 2.0.25
     - BUG/MEDIUM: sock: really fix detection of early connection failures in for 2.3-
     - REGTESTS: abortonclose: after retries, 503 is expected, not close
