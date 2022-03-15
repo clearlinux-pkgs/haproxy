@@ -1,6 +1,45 @@
 ChangeLog :
 ===========
 
+2022/03/14 : 2.0.28
+    - MEDIUM: cli: yield between each pipelined command
+    - MINOR: channel: add new function co_getdelim() to support multiple delimiters
+    - BUG/MINOR: cli: avoid O(bufsize) parsing cost on pipelined commands
+    - BUG/MEDIUM: mcli: do not try to parse empty buffers
+    - BUG/MEDIUM: mcli: always realign wrapping buffers before parsing them
+    - BUG/MEDIUM: mworker: don't lose the stats socket on failed reload
+    - BUG/MINOR: mworker: does not erase the pidfile upon reload
+    - BUG/MAJOR: http/htx: prevent unbounded loop in http_manage_server_side_cookies
+    - BUG/MAJOR: spoe: properly detach all agents when releasing the applet
+    - MINOR: sock: move the unused socket cleaning code into its own function
+    - BUG/MEDIUM: mworker: close unused transferred FDs on load failure
+    - BUG/MINOR: mworker: fix a FD leak of a sockpair upon a failed reload
+    - BUG/MEDIUM: resolvers: Really ignore trailing dot in domain names
+    - CI: ssl: enable parallel builds for OpenSSL on Linux
+    - CI: ssl: do not needlessly build the OpenSSL docs
+    - CI: ssl: keep the old method for ancient OpenSSL versions
+    - BUG/MINOR: mailers: negotiate SMTP, not ESMTP
+    - BUG/MINOR: tools: url2sa reads ipv4 too far
+    - BUG/MEDIUM: mux-h1: Don't wake h1s if mux is blocked on lack of output buffer
+    - BUG/MAJOR: mux-h2: Be sure to always report HTX parsing error to the app layer
+    - BUG/MEDIUM: stream: Abort processing if response buffer allocation fails
+    - CI: github actions: add the output of $CC -dM -E-
+    - CI: github actions: use cache for SSL libs
+    - CLEANUP: atomic: add a fetch-and-xxx variant for common operations
+    - BUG/MAJOR: sched: prevent rare concurrent wakeup of multi-threaded tasks
+    - BUG/MINOR: cli: shows correct mode in "show sess"
+    - BUG/MINOR: hlua: Set conn-stream/channel EOI flags at the end of request
+    - BUG/MINOR: stats: Set conn-stream/channel EOI flags at the end of request
+    - BUG/MINOR: cache: Set conn-stream/channel EOI flags at the end of request
+    - BUG/MINOR: promex: Set conn-stream/channel EOI flags at the end of request
+    - DEBUG: cache: Update underlying buffer when loading HTX message in cache applet
+    - BUG/MEDIUM: mcli: Properly handle errors and timeouts during reponse processing
+    - BUG/MAJOR: mux-pt: Always destroy the backend connection on detach
+    - DOC: ssl: req_ssl_sni needs implicit TLS
+    - DOC: use the req.ssl_sni in examples
+    - BUG/MINOR: stream: make the call_rate only count the no-progress calls
+    - DOC: Fix usage/examples of deprecated ACLs
+
 2022/01/26 : 2.0.27
     - CI: Expand use of GitHub Actions for CI
     - CI: Stop hijacking the hosts file
