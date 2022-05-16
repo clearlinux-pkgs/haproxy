@@ -1,6 +1,49 @@
 ChangeLog :
 ===========
 
+2022/05/13 : 2.0.29
+    - BUG/MINOR: tools: fix url2sa return value with IPv4
+    - Revert "BUG/MAJOR: mux-pt: Always destroy the backend connection on detach"
+    - BUG/MAJOR: dns: multi-thread concurrency issue on UDP socket
+    - BUILD: dns: fix backport of previous dns fix
+    - CI: github actions: switch to LibreSSL-3.5.1
+    - BUG/MEDIUM: mux-h1: only turn CO_FL_ERROR to CS_FL_ERROR with empty ibuf
+    - BUG/MINOR: tools: url2sa reads too far when no port nor path
+    - BUG/MEDIUM: stream-int: do not rely on the connection error once established
+    - MEDIUM: mux-h2: slightly relax timeout management rules
+    - BUG/MEDIUM: mux-h2: make use of http-request and keep-alive timeouts
+    - DOC: reflect H2 timeout changes
+    - BUG/MAJOR: mux_pt: always report the connection error to the conn_stream
+    - BUG/MEDIUM: http-act: Don't replace URI if path is not found or invalid
+    - CI: Update to actions/checkout@v3
+    - CI: Update to actions/cache@v3
+    - BUG/MINOR: mux-h2: do not send GOAWAY if SETTINGS were not sent
+    - BUG/MINOR: cache: do not display expired entries in "show cache"
+    - BUG/MINOR: mux-h2: do not use timeout http-keep-alive on backend side
+    - BUG/MINOR: mux-h2: use timeout http-request as a fallback for http-keep-alive
+    - BUG/MEDIUM: mux-h1: Don't request more room on partial trailers
+    - BUG/MEDIUM: compression: Don't forget to update htx_sl and http_msg flags
+    - SCRIPTS: announce-release: update the doc's URL
+    - DOC: lua: update a few doc URLs
+    - SCRIPTS: announce-release: add shortened links to pending issues
+    - BUG/MINOR: cache: Disable cache if applet creation fails
+    - DOC: remove my name from the config doc
+    - REGTESTS: fix the race conditions in be2dec.vtc ad field.vtc
+    - BUG/MINOR: pools: make sure to also destroy shared pools in pool_destroy_all()
+    - BUILD: proto_uxst: do not set unused flag
+    - BUILD: sockpair: do not set unused flag
+    - CI: github actions: update LibreSSL to 3.5.2
+    - SCRIPTS: announce-release: add URL of dev packages
+    - BUG/MINOR: mux-h2: mark the stream as open before processing it not after
+    - BUG/MEDIUM: cli: make "show cli sockets" really yield
+    - BUG/MINOR: map/cli: protect the backref list during "show map" errors
+    - BUG/MINOR: map/cli: make sure patterns don't vanish under "show map"'s init
+    - DOC: fix typo "ant" for "and" in INSTALL
+    - BUG/MINOR: server: Make SRV_STATE_LINE_MAXLEN value from 512 to 2kB (2000 bytes).
+    - BUG/MEDIUM: wdt: don't trigger the watchdog when p is unitialized
+    - CLEANUP: mux-h1: Fix comments and error messages for global options
+    - BUG/MINOR: ssl: fix build on development versions of openssl-1.1.x
+
 2022/03/14 : 2.0.28
     - MEDIUM: cli: yield between each pipelined command
     - MINOR: channel: add new function co_getdelim() to support multiple delimiters
