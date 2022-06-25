@@ -4,7 +4,7 @@
 #
 Name     : haproxy
 Version  : 2.0.29
-Release  : 44
+Release  : 45
 URL      : https://www.haproxy.org/download/2.0/src/haproxy-2.0.29.tar.gz
 Source0  : https://www.haproxy.org/download/2.0/src/haproxy-2.0.29.tar.gz
 Source1  : haproxy.service
@@ -90,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656041935
+export SOURCE_DATE_EPOCH=1656124254
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -111,7 +111,7 @@ make  %{?_smp_mflags}  TARGET=linux-glibc USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1 US
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1656041935
+export SOURCE_DATE_EPOCH=1656124254
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/haproxy
 cp %{_builddir}/haproxy-2.0.29/LICENSE %{buildroot}/usr/share/package-licenses/haproxy/99ea8073325ff4a755b6f2fa5862fc3e722f4647
