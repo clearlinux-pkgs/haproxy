@@ -4,7 +4,7 @@
 #
 Name     : haproxy
 Version  : 2.0.29
-Release  : 47
+Release  : 48
 URL      : https://www.haproxy.org/download/2.0/src/haproxy-2.0.29.tar.gz
 Source0  : https://www.haproxy.org/download/2.0/src/haproxy-2.0.29.tar.gz
 Source1  : haproxy.service
