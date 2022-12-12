@@ -1,6 +1,80 @@
 ChangeLog :
 ===========
 
+2022/12/09 : 2.0.30
+    - CI: determine actual LibreSSL version dynamically
+    - BUILD: fix build warning on solaris based systems with __maybe_unused.
+    - REGTESTS: abortonclose: Fix some race conditions
+    - BUG/MINOR: peers: fix error reporting of "bind" lines
+    - BUG/MEDIUM: http: Properly reject non-HTTP/1.x protocols
+    - BUG/MEDIUM: peers: fix segfault using multiple bind on peers sections
+    - BUG/MEDIUM: peers: prevent unitialized multiple listeners on peers section
+    - BUG/MEDIUM: sample: Fix adjusting size in word converter
+    - SCRIPTS: add make-releases-json to recreate a releases.json file in download dirs
+    - SCRIPTS: make publish-release try to launch make-releases-json
+    - DOC: peers: indicate that some server settings are not usable
+    - DOC: peers: clarify when entry expiration date is renewed.
+    - DOC: peers: fix port number and addresses on new peers section format
+    - BUG/MINOR: conn_stream: do not confirm a connection from the frontend path
+    - REGTESTS: abortonclose: Add a barrier to not mix up log messages
+    - REGTESTS: http_request_buffer: Increase client timeout to wait "slow" clients
+    - BUILD: compiler: implement unreachable for older compilers too
+    - BUG/MINOR: server: do not enable DNS resolution on disabled proxies
+    - BUG/MINOR: http-ana: Set method to HTTP_METH_OTHER when an HTTP txn is created
+    - BUG/MINOR: http-fetch: Use integer value when possible in "method" sample fetch
+    - BUG/MINOR: peers/config: always fill the bind_conf's argument
+    - BUG/MINOR: peers: fix possible NULL dereferences at config parsing
+    - BUG/MINOR: backend: Fallback on RR algo if balance on source is impossible
+    - BUG/MINOR: sockpair: wrong return value for fd_send_uxst()
+    - BUG/MINOR: ssl: free the fields in srv->ssl_ctx
+    - MINOR: peers: Use a dedicated reconnect timeout when stopping the local peer
+    - BUG/MEDIUM: peers: limit reconnect attempts of the old process on reload
+    - BUG/MINOR: peers: Use right channel flag to consider the peer as connected
+    - MINOR: server: Constify source server to copy its settings
+    - REORG: server: Export srv_settings_cpy() function
+    - BUG/MEDIUM: proxy: Perform a custom copy for default server settings
+    - BUILD: http: silence an uninitialized warning affecting gcc-5
+    - BUG/MEDIUM: mux-h2: do not fiddle with ->dsi to indicate demux is idle
+    - BUG/MINOR: resolvers: return the correct value in resolvers_finalize_config()
+    - DOC: configuration: do-resolve doesn't work with a port in the string
+    - BUG/MEDIUM: spoe: Properly update streams waiting for a ACK in async mode
+    - BUG/MEDIUM: peers: Add connect and server timeut to peers proxy
+    - BUG/MEDIUM: peers: Don't use resync timer when local resync is in progress
+    - BUG/MEDIUM: peers: Don't start resync on reload if local peer is not up-to-date
+    - REGTESTS: http_request_buffer: Add a barrier to not mix up log messages
+    - BUG/MINOR: h1: Support headers case adjustment for TCP proxies
+    - BUG/MINOR: signals/poller: set the poller timeout to 0 when there are signals
+    - BUG/MINOR: signals/poller: ensure wakeup from signals
+    - BUG/MEDIUM: proxy: ensure pause_proxy() and resume_proxy() own PROXY_LOCK
+    - BUG/MEDIUM: captures: free() an error capture out of the proxy lock
+    - SCRIPTS: announce-release: update some URLs to https
+    - BUG/MINOR: log: improper behavior when escaping log data
+    - BUILD: fix compilation for OpenSSL-3.0.0-alpha17
+    - BUILD: cfgparse: Fix GCC warning about a variable used after realloc
+    - BUG/MEDIUM: lua: handle stick table implicit arguments right.
+    - BUG/MINOR: http-fetch: Update method after a prefetch in smp_fetch_meth()
+    - BUILD: http_fetch: silence an uninitiialized warning with gcc-4/5/6 at -Os
+    - DOC: configuration: missing 'if' in tcp-request content example
+    - BUG/MAJOR: stick-tables: do not try to index a server name for applets
+    - CI: Replace the deprecated `::set-output` command by writing to $GITHUB_OUTPUT in matrix.py
+    - CI: Replace the deprecated `::set-output` command by writing to $GITHUB_OUTPUT in workflow definition
+    - DOC: management: add forgotten "show startup-logs"
+    - BUG/MAJOR: stick-table: don't process store-response rules for applets
+    - BUG/MEDIUM: stick-table: fix a race condition when updating the expiration task
+    - CI: add monthly gcc cross compile jobs
+    - CI: emit the compiler's version in the build reports
+    - BUG/MEDIUM: listener: Fix race condition when updating the global mngmt task
+    - BUG/MINOR: http_ana/txn: don't re-initialize txn and req var lists
+    - BUG/MEDIUM: peers: messages about unkown tables not correctly ignored
+    - BUILD: peers: Remove unused variables
+    - BUILD: listener: fix build warning on global_listener_rwlock without threads
+    - DOC: config: provide some configuration hints for "http-reuse"
+    - DOC: config: clarify the fact that SNI should not be used in HTTP scenarios
+    - DOC: config: explain how default matching method for ACL works
+    - DOC: config: clarify the fact that "retries" is not just for connections
+    - DOC: config: clarify the -m dir and -m dom pattern matching methods
+    - Revert "CI: determine actual LibreSSL version dynamically"
+
 2022/05/13 : 2.0.29
     - BUG/MINOR: tools: fix url2sa return value with IPv4
     - Revert "BUG/MAJOR: mux-pt: Always destroy the backend connection on detach"
