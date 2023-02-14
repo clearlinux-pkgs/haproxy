@@ -1,6 +1,32 @@
 ChangeLog :
 ===========
 
+2023/02/14 : 2.0.31
+    - SCRIPTS: announce-release: add a link to the data plane API
+    - CI: github: change "ubuntu-latest" to "ubuntu-20.04"
+    - BUG/MEDIUM: ssl: Verify error codes can exceed 63
+    - BUG/MINOR: ssl: Fix potential overflow
+    - BUG/MEDIUM: mworker: fix segv in early failure of mworker mode with peers
+    - BUG/MEDIUM: resolvers: Use tick_first() to update the resolvers task timeout
+    - LICENSE: wurfl: clarify the dummy library license.
+    - BUG/MEDIUM: mux-h2: Refuse interim responses with end-stream flag set
+    - BUG/MINOR: pool/stats: Use ullong to report total pool usage in bytes in stats
+    - BUILD: makefile: build the features list dynamically
+    - BUILD: makefile: sort the features list
+    - BUG/MAJOR: buf: Fix copy of wrapping output data when a buffer is realigned
+    - BUG/MINOR: resolvers: Wait the resolution execution for a do_resolv action
+    - BUG/MINOR: promex: Don't forget to consume the request on error
+    - BUG/MINOR: http-fetch: Don't block HTTP sample fetch eval in HTTP_MSG_ERROR state
+    - BUG/MINOR: http-ana: make set-status also update txn->status
+    - BUG/MEDIUM: ssl: wrong eviction from the session cache tree
+    - BUG/MEDIUM: stick-table: do not leave entries in end of window during purge
+    - BUG/MEDIUM: cache: use the correct time reference when comparing dates
+    - DOC: config: fix option spop-check proxy compatibility
+    - DOC: config: 'http-send-name-header' option may be used in default section
+    - DOC: proxy-protocol: fix wrong byte in provided example
+    - CI: github: don't warn on deprecated openssl functions on windows
+    - BUG/CRITICAL: http: properly reject empty http header field names
+
 2022/12/09 : 2.0.30
     - CI: determine actual LibreSSL version dynamically
     - BUILD: fix build warning on solaris based systems with __maybe_unused.
