@@ -1,6 +1,43 @@
 ChangeLog :
 ===========
 
+2023/06/12 : 2.0.32
+    - BUG/MEDIUM: mworker: don't register mworker_accept_wrapper() when master FD is wrong
+    - BUG/MINOR: mworker: prevent incorrect values in uptime
+    - BUG/MINOR: ssl: Use 'date' instead of 'now' in ocsp stapling callback
+    - BUG/MINOR: mux-h2: make sure the h2c task exists before refreshing it
+    - BUG/MEDIUM: spoe: Don't set the default traget for the SPOE agent frontend
+    - BUG/MEDIUM: mux-h2: erase h2c->wait_event.tasklet on error path
+    - BUG/MEDIUM: mux-h1: Wakeup H1C on shutw if there is no I/O subscription
+    - MINOR: proxy/pool: prevent unnecessary calls to pool_gc()
+    - CI: bump "actions/checkout" to v3 for cross zoo matrix
+    - BUG/MEDIUM: Update read expiration date on synchronous send
+    - BUG/MINOR: mux-h2: make sure to produce a log on invalid requests
+    - MINOR: checks: make sure spread-checks is used also at boot time
+    - MINOR: clock: measure the total boot time
+    - BUG/MINOR: checks: postpone the startup of health checks by the boot time
+    - BUG/MEDIUM: mux-h1: Handle connection error after a synchronous send
+    - BUG/MINOR: mux-h1: Account consumed output data on synchronous connection error
+    - BUG/MEDIUM: mux-h1: do not refrain from signaling errors after end of input
+    - BUG/MINOR: tcp-rules: Don't shortened the inspect-delay when EOI is set
+    - DOC: config: Clarify conditions to shorten the inspect-delay for TCP rules
+    - BUG/MINOR: hlua: unsafe hlua_lua2smp() usage
+    - SCRIPTS: publish-release: update the umask to keep group write access
+    - BUG/MINOR: log: fix memory error handling in parse_logsrv()
+    - BUG/MINOR: proxy: missing free in free_proxy for redirect rules
+    - MINOR: spoe: Don't stop disabled proxies
+    - BUG/MEDIUM: filters: Don't deinit filters for disabled proxies during startup
+    - BUG/MINOR: debug: do not emit empty lines in thread dumps
+    - BUG/MEDIUM: spoe: Don't start new applet if there are enough idle ones
+    - BUG/MINOR: server: incorrect report for tracking servers leaving drain
+    - MINOR: server: explicitly commit state change in srv_update_status()
+    - BUG/MINOR: server: don't miss proxy stats update on server state transitions
+    - BUG/MINOR: server: don't miss server stats update on server state transitions
+    - BUG/MINOR: server: don't use date when restoring last_change from state file
+    - DOC: config: Fix bind/server/peer documentation in the peers section
+    - CONTRIB: Add vi file extensions to .gitignore
+    - BUG/MINOR: spoe: Only skip sending new frame after a receive attempt
+
 2023/02/14 : 2.0.31
     - SCRIPTS: announce-release: add a link to the data plane API
     - CI: github: change "ubuntu-latest" to "ubuntu-20.04"

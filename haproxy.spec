@@ -4,10 +4,10 @@
 # Using build pattern: make
 #
 Name     : haproxy
-Version  : 2.0.31
-Release  : 55
-URL      : https://www.haproxy.org/download/2.0/src/haproxy-2.0.31.tar.gz
-Source0  : https://www.haproxy.org/download/2.0/src/haproxy-2.0.31.tar.gz
+Version  : 2.0.32
+Release  : 56
+URL      : https://www.haproxy.org/download/2.0/src/haproxy-2.0.32.tar.gz
+Source0  : https://www.haproxy.org/download/2.0/src/haproxy-2.0.32.tar.gz
 Source1  : haproxy.service
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -74,10 +74,10 @@ services components for the haproxy package.
 
 
 %prep
-%setup -q -n haproxy-2.0.31
-cd %{_builddir}/haproxy-2.0.31
+%setup -q -n haproxy-2.0.32
+cd %{_builddir}/haproxy-2.0.32
 pushd ..
-cp -a haproxy-2.0.31 buildavx2
+cp -a haproxy-2.0.32 buildavx2
 popd
 
 %build
@@ -85,7 +85,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685551376
+export SOURCE_DATE_EPOCH=1686589577
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -106,7 +106,7 @@ make  %{?_smp_mflags}  TARGET=linux-glibc USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1 US
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1685551376
+export SOURCE_DATE_EPOCH=1686589577
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/haproxy
 cp %{_builddir}/haproxy-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/haproxy/99ea8073325ff4a755b6f2fa5862fc3e722f4647 || :
