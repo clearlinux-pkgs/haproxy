@@ -1,6 +1,30 @@
 ChangeLog :
 ===========
 
+2023/08/19 : 2.0.33
+    - BUG/MINOR: cfgparse-tcp: leak when re-declaring interface from bind line
+    - BUG/MINOR: proxy: add missing interface bind free in free_proxy
+    - BUG/MINOR: server: inherit from netns in srv_settings_cpy()
+    - BUG/MINOR: namespace: missing free in netns_sig_stop()
+    - BUG/MEDIUM: mworker: increase maxsock with each new worker
+    - DOC: Add tune.h2.max-frame-size option to table of contents
+    - BUG/MINOR: sample: Fix wrong overflow detection in add/sub conveters
+    - BUG/MINOR: http: Return the right reason for 302
+    - CI: explicitely highlight VTest result section if there's something
+    - DOC: configuration: describe Td in Timing events
+    - BUG/MINOR: chunk: fix chunk_appendf() to not write a zero if buffer is full
+    - BUG/MAJOR: http-ana: Get a fresh trash buffer for each header value replacement
+    - BUG/MAJOR: http: reject any empty content-length header value
+    - MINOR: ist: add new function ist_find_range() to find a character range
+    - MINOR: ist: Add istend() function to return a pointer to the end of the string
+    - MINOR: http: add new function http_path_has_forbidden_char()
+    - MINOR: h2: pass accept-invalid-http-request down the request parser
+    - BUG/MINOR: h1: do not accept '#' as part of the URI component
+    - BUG/MINOR: h2: reject more chars from the :path pseudo header
+    - REGTESTS: http-rules: verify that we block '#' by default for normalize-uri
+    - DOC: clarify the handling of URL fragments in requests
+    - BUG/MINOR: http: skip leading zeroes in content-length values
+
 2023/06/12 : 2.0.32
     - BUG/MEDIUM: mworker: don't register mworker_accept_wrapper() when master FD is wrong
     - BUG/MINOR: mworker: prevent incorrect values in uptime
