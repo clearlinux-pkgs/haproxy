@@ -1,6 +1,33 @@
 ChangeLog :
 ===========
 
+2023/12/19 : 2.0.34
+    - SCRIPTS: git-show-backports: automatic ref and base detection with -m
+    - DOC: lua: fix core.register_action typo
+    - BUG/MEDIUM: hlua: don't pass stale nargs argument to lua_resume()
+    - BUG/MINOR: freq_ctr: fix possible negative rate with the scaled API
+    - BUG/MINOR: hlua: fix invalid use of lua_pop on error paths
+    - BUG/MINOR: hlua_fcn: potentially unsafe stktable_data_ptr usage
+    - BUG/MEDIUM: actions: always apply a longest match on prefix lookup
+    - BUG/MEDIUM: mux-h2: Don't report an error on shutr if a shutw is pending
+    - BUG/MEDIUM: peers: Be sure to always refresh recconnect timer in sync task
+    - BUG/MINOR: mux-h2: commit the current stream ID even on reject
+    - BUG/MINOR: ssl: suboptimal certificate selection with TLSv1.3 and dual ECDSA/RSA
+    - BUG/MEDIUM: ssl: segfault when cipher is NULL
+    - BUG/MINOR: stktable: missing free in parse_stick_table()
+    - BUG/MINOR: cfgparse/stktable: fix error message on stktable_init() failure
+    - BUG/MINOR: stick-table/cli: Check for invalid ipv4 key
+    - DOC: management: -q is quiet all the time
+    - DOC: config: use the word 'backend' instead of 'proxy' in 'track' description
+    - REGTESTS: http: add a test to validate chunked responses delivery
+    - DOC: 51d: updated 51Degrees repo URL for v3.2.10
+    - DOC: config: specify supported sections for "max-session-srv-conns"
+    - DOC: config: add matrix entry for "max-session-srv-conns"
+    - REGTESTS: sample: Test the behavior of consecutive delimiters for the field converter
+    - BUG/MINOR: sample: Make the `word` converter compatible with `-m found`
+    - DOC: Clarify the differences between field() and word()
+    - BUG/MINOR: startup: set GTUNE_SOCKET_TRANSFER correctly
+
 2023/08/19 : 2.0.33
     - BUG/MINOR: cfgparse-tcp: leak when re-declaring interface from bind line
     - BUG/MINOR: proxy: add missing interface bind free in free_proxy

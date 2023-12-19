@@ -6,10 +6,10 @@
 # autospec commit: c1050fe
 #
 Name     : haproxy
-Version  : 2.0.33
-Release  : 58
-URL      : https://www.haproxy.org/download/2.0/src/haproxy-2.0.33.tar.gz
-Source0  : https://www.haproxy.org/download/2.0/src/haproxy-2.0.33.tar.gz
+Version  : 2.0.34
+Release  : 59
+URL      : https://www.haproxy.org/download/2.0/src/haproxy-2.0.34.tar.gz
+Source0  : https://www.haproxy.org/download/2.0/src/haproxy-2.0.34.tar.gz
 Source1  : haproxy.service
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -76,10 +76,10 @@ services components for the haproxy package.
 
 
 %prep
-%setup -q -n haproxy-2.0.33
-cd %{_builddir}/haproxy-2.0.33
+%setup -q -n haproxy-2.0.34
+cd %{_builddir}/haproxy-2.0.34
 pushd ..
-cp -a haproxy-2.0.33 buildavx2
+cp -a haproxy-2.0.34 buildavx2
 popd
 
 %build
@@ -87,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1701968490
+export SOURCE_DATE_EPOCH=1702997830
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -128,7 +128,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1701968490
+export SOURCE_DATE_EPOCH=1702997830
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/haproxy
 cp %{_builddir}/haproxy-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/haproxy/99ea8073325ff4a755b6f2fa5862fc3e722f4647 || :
