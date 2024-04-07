@@ -1,6 +1,24 @@
 ChangeLog :
 ===========
 
+2024/04/05 : 2.0.35
+    - DOC: configuration: typo req.ssl_hello_type
+    - BUG/MEDIUM: mux-h2: Report too large HEADERS frame only when rxbuf is empty
+    - BUG/MEDIUM: spoe: Never create new spoe applet if there is no server up
+    - BUG/MEDIUM: cli: some err/warn msg dumps add LR into CSV output on stat's CLI
+    - BUG/MEDIUM: pool: fix rare risk of deadlock in pool_flush()
+    - BUG/MINOR: h1-htx: properly initialize the err_pos field
+    - BUG/MEDIUM: h1: always reject the NUL character in header values
+    - BUG/MAJOR: ssl_sock: Always clear retry flags in read/write functions
+    - CI: Update to actions/cache@v4
+    - BUG/MINOR: hlua: Fix log level to the right value when set via TXN:set_loglevel
+    - BUG/MINOR: cfgparse: report proper location for log-format-sd errors
+    - BUG/MEDIUM: spoe: Return an invalid frame on recv if size is too small
+    - BUG/MINOR: session: ensure conn owner is set after insert into session
+    - BUG/MINOR: server: 'source' interface ignored from 'default-server' directive
+    - BUG/MINOR: backend: properly handle redispatch 0
+    - BUG/MEDIUM: spoe: Don't rely on stream's expiration to detect processing timeout
+
 2023/12/19 : 2.0.34
     - SCRIPTS: git-show-backports: automatic ref and base detection with -m
     - DOC: lua: fix core.register_action typo
